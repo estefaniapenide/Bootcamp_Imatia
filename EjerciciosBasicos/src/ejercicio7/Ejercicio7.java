@@ -38,6 +38,7 @@ public class Ejercicio7 {
 		for (int i = 0; i < array.length; i++) {
 		    if (array[i] == elemento) {
 		    	psoicion=i;
+		    	break; //Para que no siga dando vueltas si lo encuentra
 		    }
 		  }
 		
