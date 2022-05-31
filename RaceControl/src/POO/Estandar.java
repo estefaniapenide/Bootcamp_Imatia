@@ -1,6 +1,7 @@
 package POO;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class Estandar extends Carrera{
 	
@@ -44,5 +45,26 @@ public class Estandar extends Carrera{
 	public void setDuracion(int duracion) {
 		this.duracion = duracion;
 	}
+	
+//	public void carrera() {
+//		// Si aun están en los minutos previos
+//		while ((this.duracion*60) > 0) {
+//			movimientoCoches();
+//			this.minutosPrevios--;
+//		}
+//		//Una vez acabados los minutosPrevios
+//		while (super.getCoches().size() > 0) {
+//			movimientoCoches();
+//			retirarCoche();
+//		}
+//		Collections.sort(super.getPodio());//Se ordena el podio
+//	}
+//	
+//	private void movimientoCoches() {
+//		for (int i = 0; i < super.getCoches().size(); i++) {
+//			super.getCoches().get(i).movimiento();// El coche cambia su velocidad y la distanciaRecorrida
+//		}
+//		Collections.sort(super.getCoches());//Los coches se ordenan por distancia recorrida
+//	}
 
 }

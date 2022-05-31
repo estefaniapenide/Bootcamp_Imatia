@@ -24,19 +24,19 @@ public class Ficheros {
 			StringBuilder textoFichero = new StringBuilder();
 
 			// Funciona
-			Reader lector = new FileReader(fichero, Charset.forName("UTF-8"));
-			char[] bufer = new char[1024];
-			while (lector.read(bufer) != -1) {
-				textoFichero.append(bufer);
-			}
-			lector.close();
-			System.out.println(textoFichero);
-
-			// Lee sólo la última línea
-//			String linea="";
-//			while ((linea=br.readLine())!=null) {
-//				System.out.println(br.readLine());
+//			Reader lector = new FileReader(fichero, Charset.forName("UTF-8"));
+//			char[] bufer = new char[1024];
+//			while (lector.read(bufer) != -1) {
+//				textoFichero.append(bufer);
 //			}
+//			lector.close();
+//			System.out.println(textoFichero);
+
+			// Funciona
+			String linea="";
+			while ((linea=br.readLine())!=null) {
+				System.out.println(linea);
+			}
 
 			// Lee sólo la última línea
 //            String linea="";
