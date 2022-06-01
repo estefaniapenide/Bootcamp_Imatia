@@ -3,39 +3,39 @@ package POO;
 import java.util.ArrayList;
 import java.util.Collections;
 
-public class Estandar extends Carrera{
-	
-	private int duracion=3;//Si no se indica, duran 3 horas
-	
+public class Estandar extends Carrera {
+
+	private int duracion = 3;// Si no se indica, duran 3 horas
+
 	public Estandar() {
 		super();
 	}
-	
-	public Estandar(String nombre) {//Si no se indica, duran 3 horas
+
+	public Estandar(String nombre) {// Si no se indica, duran 3 horas
 		super(nombre);
 	}
-	
-	public Estandar(String nombre, Garaje garaje) {//Si no se indica, duran 3 horas
-		super(nombre,garaje);
+
+	public Estandar(String nombre, Garaje garaje) {// Si no se indica, duran 3 horas
+		super(nombre, garaje);
 	}
-	
-	public Estandar(String nombre, ArrayList<Garaje> garajes) {//Si no se indica, duran 3 horas
-		super(nombre,garajes);
+
+	public Estandar(String nombre, ArrayList<Garaje> garajes) {// Si no se indica, duran 3 horas
+		super(nombre, garajes);
 	}
-	
+
 	public Estandar(String nombre, int duracion) {
 		super(nombre);
-		this.duracion=duracion;
+		this.duracion = duracion;
 	}
-	
+
 	public Estandar(String nombre, Garaje garaje, int duracion) {
-		super(nombre,garaje);
-		this.duracion=duracion;
+		super(nombre, garaje);
+		this.duracion = duracion;
 	}
-	
+
 	public Estandar(String nombre, ArrayList<Garaje> garajes, int duracion) {
-		super(nombre,garajes);
-		this.duracion=duracion;
+		super(nombre, garajes);
+		this.duracion = duracion;
 	}
 
 	public int getDuracion() {
@@ -45,26 +45,68 @@ public class Estandar extends Carrera{
 	public void setDuracion(int duracion) {
 		this.duracion = duracion;
 	}
+
+	public void carrera() {
+		while ((this.duracion * 60) > 0) {
+			movimientoCoches();
+			this.duracion = (this.duracion * 60) + 1;
+		}
+		addCochesPodio();
+	}
+
+	private void movimientoCoches() {
+		for (int i = 0; i < super.getCoches().size(); i++) {
+			super.getCoches().get(i).movimiento();// El coche cambia su velocidad y la distanciaRecorrida
+		}
+		Collections.sort(super.getCoches());// Los coches se ordenan por distancia recorrida
+	}
 	
-//	public void carrera() {
-//		// Si aun están en los minutos previos
-//		while ((this.duracion*60) > 0) {
-//			movimientoCoches();
-//			this.minutosPrevios--;
-//		}
-//		//Una vez acabados los minutosPrevios
-//		while (super.getCoches().size() > 0) {
-//			movimientoCoches();
-//			retirarCoche();
-//		}
-//		Collections.sort(super.getPodio());//Se ordena el podio
-//	}
-//	
-//	private void movimientoCoches() {
-//		for (int i = 0; i < super.getCoches().size(); i++) {
-//			super.getCoches().get(i).movimiento();// El coche cambia su velocidad y la distanciaRecorrida
-//		}
-//		Collections.sort(super.getCoches());//Los coches se ordenan por distancia recorrida
-//	}
+//Pensar en lo de Armando, usando listas para cada puesto del podio.
+
+	public void addCochesPodio() {
+		int contador = 0;
+		for (int i = 1; i <= super.getCoches().size(); i++) {
+			// Solo se guardarán tres posiciones
+			if (contador < 3) {
+				// Si un coche ya está guardado en el podio, lo está con su posición final
+				// correcta
+				boolean yaGuardado = false;
+				for (Coche coche : super.getPodio().keySet()) {
+					if (coche.equals((super.getCoches().get(i - 1)))) {
+						yaGuardado = true;
+					}
+				}
+				if (!yaGuardado) {
+					// En caso de que no no estemos en el ultimo coche
+					if (super.getCoches().size() > i) {
+						// Si un coche ha recorrido la misma distancia que el siguiente, ambos se
+						// guardarán con la posición del primero
+						if (super.getCoches().get(i - 1).getDistanciaRecorrida() == super.getCoches().get(i)
+								.getDistanciaRecorrida()) {
+							super.getPodio().put(super.getCoches().get(i - 1), (contador + 1));
+							super.getPodio().put(super.getCoches().get(i), (contador + 1));
+							// Si aun quedan coches por comprobar
+							if (super.getCoches().size() > i + 1) {
+								// Si la distancia del siguiente es igual a la de este y van a estar en la misma
+								// posición, se deja dar una vuelta más para guardarlo
+								if (super.getCoches().get(i).getDistanciaRecorrida() == super.getCoches().get(i + 1)
+										.getDistanciaRecorrida()) {
+									contador--;
+								}
+							}
+						} else {// Se guarda el coche con su correspondiente posición
+							super.getPodio().put(super.getCoches().get(i - 1), (contador + 1));
+						}
+
+					} else {// Se guarda el coche con su correspondiente posición
+						super.getPodio().put(super.getCoches().get(i - 1), (contador + 1));
+					}
+					// Siguiente posición
+					contador++;
+				}
+			}
+
+		}
+	}
 
 }

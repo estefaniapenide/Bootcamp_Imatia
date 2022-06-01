@@ -8,15 +8,15 @@ public class Coche implements Comparable<Coche>{
 	private Garaje garaje;
 	private int velocidad;
 	private int distanciaRecorrida;// Para comprarla con la de los otros coches y saber en qué posición están
-	private int posicion;//Si uso los TreeSet/HashMap de la carrera, esto no me hace falta aquí
 	private int puntuacion;
-	public int posicionProvisional;
+
 
 	public Coche() {
 	}
 
-	public Coche(String marca) {
+	public Coche(String marca,String modelo) {
 		this.marca = marca;
+		this.modelo=modelo;
 	}
 
 	public Coche(String marca, String modelo, Garaje garaje) {
@@ -66,30 +66,24 @@ public class Coche implements Comparable<Coche>{
 		this.distanciaRecorrida = distanciaRecorrida;
 	}
 
-	public int getPosicion() {
-		return posicion;
-	}
-
-	public void setPosicion(int posicion) {
-		this.posicion = posicion;
-	}
 
 	public int getMAX_VELOCIDAD() {
 		return MAX_VELOCIDAD;
 	}
 
-	// Acelera y frena el coche de forma aleatoria una vez por minuto (controlar en
-	// la carrera??)
+
 	private void acelerar() {
-		if (this.velocidad < this.MAX_VELOCIDAD) {
-			this.velocidad += 10;
+		int v = (int)( Math.random() * (10-1+10)+1);
+		if (this.velocidad+v <= this.MAX_VELOCIDAD) {
+			this.velocidad += v;
 		}
 		this.distanciaRecorrida += this.velocidad * 1000 / 60;//Aunque no acelere, sigue avanzando a la velocidad que tenía
 	}
 
 	private void frenar() {
-		if (this.velocidad > 0) {
-			this.velocidad -= 10;
+		int v = (int)( Math.random() * (10-1+10)+1);
+		if (this.velocidad-v>= 0) {
+			this.velocidad -= v;
 		}
 		this.distanciaRecorrida += this.velocidad * 1000 / 60;//Aunque no frene, sigue avanzando a la velocidad que tenía
 	}
@@ -110,7 +104,7 @@ public class Coche implements Comparable<Coche>{
 	
 	@Override
 	public String toString() {
-		String coche = "\n\tMARCA: " + this.marca + "\n\tMODELO: " + this.modelo + "\n\tGARAJE: " + this.garaje.getNombre()+"\n\tVELOCIDAD: "+this.velocidad+"\n\tDISTANCIA RECORRIDA: "+this.distanciaRecorrida+"\n\tPosicion prov: "+this.posicionProvisional;
+		String coche = "\n\tMARCA: " + this.marca + "\n\tMODELO: " + this.modelo + "\n\tGARAJE: " + this.garaje.getNombre()+"\n\tVELOCIDAD: "+this.velocidad+"\n\tDISTANCIA RECORRIDA: "+this.distanciaRecorrida;
 		return coche;
 	}
 	
@@ -124,6 +118,19 @@ public class Coche implements Comparable<Coche>{
 			return 0;
 		}
 	}
+	
+//	//Ver si no me hace falta sobreescribir también el hashCode
+//	 @Override//Me tiendo esto se me fastidia el addCochesPodio() //Mejor no hacerlo y ver otra manera de gusradar los cochesParaPodio
+//	    public boolean equals(Object object) {
+//		 Coche otroCoche = (Coche) object;
+//	        if ((Coche)object == this)
+//	            return true;
+//	        if(((Coche)object).getMarca().equals(otroCoche.getMarca()) && ((Coche)object).getModelo().equals(otroCoche.getModelo())) 
+//	        	return true;
+//	        else
+//	        	return false;
+//
+//	    }
 	
 	
 

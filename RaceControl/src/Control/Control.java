@@ -1,6 +1,8 @@
 package Control;
 
 import java.util.ArrayList;
+import java.util.Map;
+import java.util.Objects;
 
 import POO.Coche;
 import POO.Eliminacion;
@@ -17,28 +19,30 @@ public class Control {
 		Garaje g2 = new Garaje("2");
 		Garaje g3 = new Garaje("3");
 		
-		Coche c1 = new Coche("uno");
-		Coche c2 = new Coche("dos");
-		Coche c3 = new Coche("tres");
-		Coche c4 = new Coche("cuatro");
+		Coche c1 = new Coche("opel","uno");
+		Coche c2 = new Coche("opel","dos");
+		Coche c3 = new Coche("opel","tres");
+		Coche c4 = new Coche("opel","cuatro");
+		Coche c20 = new Coche("opel","cinco");
 		c1.setGaraje(g1);
 		c2.setGaraje(g1);
 		c3.setGaraje(g1);
 		c4.setGaraje(g1);
+		c20.setGaraje(g1);
 		
-		Coche c5 = new Coche("a");
-		Coche c6 = new Coche("b");
-		Coche c7 = new Coche("c");
-		Coche c8 = new Coche("d");
+		Coche c5 = new Coche("seat","a");
+		Coche c6 = new Coche("seat","b");
+		Coche c7 = new Coche("seat","c");
+		Coche c8 = new Coche("seat","d");
 		c5.setGaraje(g2);
 		c6.setGaraje(g2);
 		c7.setGaraje(g2);
 		c8.setGaraje(g2);
 		
-		Coche c9 = new Coche("alfa");
-		Coche c10 = new Coche("beta");
-		Coche c11 = new Coche("gamma");
-		Coche c12 = new Coche("delta");
+		Coche c9 = new Coche("seat","alfa");
+		Coche c10 = new Coche("seat","beta");
+		Coche c11 = new Coche("seat","gamma");
+		Coche c12 = new Coche("seat","delta");
 		c9.setGaraje(g3);
 		c10.setGaraje(g3);
 		c11.setGaraje(g3);
@@ -48,6 +52,7 @@ public class Control {
 		g1.getCoches().add(c2);
 		g1.getCoches().add(c3);
 		g1.getCoches().add(c4);
+		g1.getCoches().add(c20);
 		
 		g2.getCoches().add(c5);
 		g2.getCoches().add(c6);
@@ -86,19 +91,59 @@ public class Control {
 		
 		for(int i=0; i<e1.getCoches().size();i++) {
 			int posicionPodio=(e1.getCoches().indexOf(e1.getCoches().get(i)))+1;
-			System.out.print("\nPOSICIÓN PODIO: "+posicionPodio);
+			System.out.print("\nPOSICIÓN : "+posicionPodio);
 			System.out.println(e1.getCoches().get(i));	
 		}
 		
-//		for(int i=0; i<e1.getPodio().size();i++) {
-//			int posicionPodio=(e1.getPodio().indexOf(e1.getPodio().get(i)))+1;
-//			System.out.print("\nPOSICIÓN PODIO: "+posicionPodio);
-//			System.out.println(e1.getPodio().get(i));
-//			
+		for(int i=0; i<e1.cochesParaPodio.size();i++) {
+			int posicionPodio=(e1.cochesParaPodio.indexOf(e1.cochesParaPodio.get(i)))+1;
+			System.out.print("\nPOSICIÓN COCHES PARA PODIO: "+posicionPodio);
+			System.out.println(e1.cochesParaPodio.get(i));	
+		}
+		
+		for (Map.Entry<Coche, Integer> entry : es1.getPodio().entrySet()) {	
+			Coche coche = entry.getKey();
+			int posicion=entry.getValue();
+			System.out.print("\nPOSICIÓN PODIO "+posicion);
+			System.out.println(coche);
+					
+	}
+		
+		System.out.println("\n*****************CARRERA ESTÁNADR***********************");
+		es1.carrera();
+		
+//		es1.getCoches().get(0).setDistanciaRecorrida(5000);
+//		es1.getCoches().get(1).setDistanciaRecorrida(5000);
+//		es1.getCoches().get(2).setDistanciaRecorrida(300);
+//		es1.getCoches().get(3).setDistanciaRecorrida(300);
+//		es1.getCoches().get(4).setDistanciaRecorrida(200);
+//		
+//		es1.addCochesPodio();
+		
+//		for(int i=0; i<es1.getCoches().size();i++) {
+//		int posicionPodio=(es1.getCoches().indexOf(es1.getCoches().get(i)))+1;
+//		System.out.print("\nPOSICIÓN: "+posicionPodio);
+//		System.out.println(es1.getCoches().get(i));	
+//	}
+		
+		for (Map.Entry<Coche, Integer> entry : es1.getPodio().entrySet()) {	
+				Coche coche = entry.getKey();
+				int posicion=entry.getValue();
+				System.out.print("\nPOSICIÓN PODIO "+posicion);
+				System.out.println(coche);
+						
+		}
+		
+		
+			
+		
+		
+//		for(int i=0; i<es1.getCochesAlReves().size();i++) {
+//			int posicionPodio=(es1.getCochesAlReves().indexOf(es1.getCochesAlReves().get(i)))+1;
+//			System.out.print("\nPOSICIÓN  AL REVÉS: "+posicionPodio);
+//			System.out.println(es1.getCochesAlReves().get(i));	
 //		}
 		
-//		System.out.println("\n*****************CARRERA ESTÁNADR***********************");
-//		es1.carrera();
 //		for(int i=0; i<es1.getPodio().size();i++) {
 //			int posicionPodio=(es1.getPodio().indexOf(es1.getPodio().get(i)))+1;
 //			System.out.print("\nPOSICIÓN PODIO: "+posicionPodio);

@@ -2,6 +2,7 @@ package POO;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.TreeSet;
 
 public abstract class Carrera {
@@ -9,10 +10,11 @@ public abstract class Carrera {
 	private String nombre;
 	private ArrayList<Coche> coches = new ArrayList<Coche>();//El orden del arrayList determinará en qué psosión está cada coche
 
+
 	private ArrayList<Garaje> garajes = new ArrayList<Garaje>();
 	private Garaje garaje;
 	
-	private HashMap<Coche,Integer> podio = new HashMap<Coche,Integer>();//No se puede usar esto porque pueden quedar en la misma posicion varios
+	private HashMap<Coche,Integer> podio = new HashMap<Coche,Integer>();
 
 	public Carrera(){
 
@@ -58,6 +60,7 @@ public abstract class Carrera {
 	public void setCoches(ArrayList<Coche> coches) {
 		this.coches = coches;
 	}
+
 
 	public HashMap<Coche, Integer> getPodio() {
 		return podio;
