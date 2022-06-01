@@ -15,28 +15,21 @@ public class Estandar extends Carrera {
 		super(nombre);
 	}
 
-	public Estandar(String nombre, Garaje garaje) {// Si no se indica, duran 3 horas
-		super(nombre, garaje);
+	public Estandar(String nombre, Torneo torneo) {// Si no se indica, duran 3 horas
+		super(nombre, torneo);
 	}
 
-	public Estandar(String nombre, ArrayList<Garaje> garajes) {// Si no se indica, duran 3 horas
-		super(nombre, garajes);
-	}
 
 	public Estandar(String nombre, int duracion) {
 		super(nombre);
 		this.duracion = duracion;
 	}
 
-	public Estandar(String nombre, Garaje garaje, int duracion) {
-		super(nombre, garaje);
+	public Estandar(String nombre,Torneo torneo, int duracion) {
+		super(nombre, torneo);
 		this.duracion = duracion;
 	}
 
-	public Estandar(String nombre, ArrayList<Garaje> garajes, int duracion) {
-		super(nombre, garajes);
-		this.duracion = duracion;
-	}
 
 	public int getDuracion() {
 		return duracion;

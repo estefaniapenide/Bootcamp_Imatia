@@ -23,29 +23,20 @@ public class Eliminacion extends Carrera {
 		super(nombre);
 	}
 
-	public Eliminacion(String nombre, Garaje garaje) {
-		super(nombre, garaje);
+	public Eliminacion(String nombre, Torneo torneo) {
+		super(nombre, torneo);
 	}
 
-	public Eliminacion(String nombre, ArrayList<Garaje> garajes) {
-		super(nombre, garajes);
-	}
 
 	public Eliminacion(String nombre, int minutosPrevios) {
 		super(nombre);
 		this.minutosPrevios = minutosPrevios;
 	}
 
-	public Eliminacion(String nombre, Garaje garaje, int minutosPrevios) {
-		super(nombre, garaje);
+	public Eliminacion(String nombre,Torneo torneo, int minutosPrevios) {
+		super(nombre, torneo);
 		this.minutosPrevios = minutosPrevios;
 	}
-
-	public Eliminacion(String nombre, ArrayList<Garaje> garajes, int minutosPrevios) {
-		super(nombre, garajes);
-		this.minutosPrevios = minutosPrevios;
-	}
-
 
 
 	public void carrera() {
@@ -67,8 +58,7 @@ public class Eliminacion extends Carrera {
 	
 	private void actualizarCochesParaPodio() {//Equals de coche cambiado para que dos coches sean iguales si lo es su marca y su modelo
 		
-		Coche coche =null;
-		
+		Coche coche =null;	
 		boolean cochePermanece=false;
 		for(int i=0; i<super.getCoches().size();i++) {
 			if(cochesParaPodio.contains(super.getCoches().get(i))) {
@@ -79,9 +69,7 @@ public class Eliminacion extends Carrera {
 				cochesParaPodio.add(super.getCoches().get(i));//Añade el coche con la nueva distanciaRecorrida
 			}
 		}
-		
-		
-		
+	
 		Collections.sort(cochesParaPodio);
 	}
 	

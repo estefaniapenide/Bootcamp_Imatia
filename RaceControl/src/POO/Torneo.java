@@ -22,18 +22,28 @@ public class Torneo {//Todos los garajes que participan en el torneo irán a toda
 		this.carreras = carreras;
 	}
 
-	public Torneo(String nombre) {//Si no se indica serán 10 carreras
+	public Torneo(String nombre, ArrayList<Garaje> garajes) {//Si no se indica serán 10 carreras
 		this.nombre=nombre;
+		this.garajes=garajes;
 	}
 	
-	public Torneo(String nombre, int numeroCarreras) {	//Si se indica el número de carreras
+	public Torneo(String nombre, int numeroCarreras, ArrayList<Garaje> garajes) {//Si se indica el número de carreras
 		this.nombre=nombre;
 		this.numeroCarreras=numeroCarreras;
+		this.garajes=garajes;
 	}
 	
 
 	public String getNombre() {
 		return nombre;
+	}
+
+	public ArrayList<Garaje> getGarajes() {
+		return garajes;
+	}
+
+	public void setGarajes(ArrayList<Garaje> garajes) {
+		this.garajes = garajes;
 	}
 
 }

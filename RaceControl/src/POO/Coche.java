@@ -131,6 +131,11 @@ public class Coche implements Comparable<Coche>{
 //	        	return false;
 //
 //	    }
+//	 
+//	 @Override
+//	 public int hashCode() {
+//		 return 1;
+//	 }
 	
 	
 

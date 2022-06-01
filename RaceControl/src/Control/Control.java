@@ -3,15 +3,47 @@ package Control;
 import java.util.ArrayList;
 import java.util.Map;
 import java.util.Objects;
+import java.util.Scanner;
 
+import Cadenas.Cadenas;
+import ControlData.ControlData;
 import POO.Coche;
 import POO.Eliminacion;
 import POO.Estandar;
 import POO.Garaje;
+import POO.Torneo;
+import Vista.TorneosV;
 
 public class Control {
 
 	public static void main(String[] args) {
+		
+		
+		
+		Scanner input = new Scanner(System.in);
+		
+		byte op=0;
+		do {
+			Cadenas.menuPrincipal();
+			op = ControlData.leerByte(input);
+			switch(op) {
+			case 1:
+				TorneosV.opcionesTorneos();
+				break;
+			case 2:
+				break;
+			case 3:
+				break;
+			case 0:
+				Cadenas.fin();
+				break;
+			default:
+				Cadenas.mensajeDefault();
+				break;
+			}
+		}while(op!=0);
+		
+		input.close();
 		
 		//Pruebas
 		
@@ -64,16 +96,27 @@ public class Control {
 		g3.getCoches().add(c11);
 		g3.getCoches().add(c12);
 		
-		System.out.println(c1.compareTo(c12));
 		
-		ArrayList<Garaje> garajes = new ArrayList<Garaje>();
-		garajes.add(g2);
-		garajes.add(g3);
+		ArrayList<Garaje> garajes1 = new ArrayList<Garaje>();
+		garajes1.add(g1);
+		garajes1.add(g2);
+		garajes1.add(g3);
 		
-		Eliminacion e1 = new Eliminacion("Eliminacion1",g1,7);
-		Eliminacion e2 = new Eliminacion("Eliminacion2",garajes);
+		ArrayList<Garaje> garajes2 = new ArrayList<Garaje>();
+		garajes2.add(g1);
 		
-		Estandar es1 = new Estandar("Estandar 1",g1);//Dura tres horas porque no se ha indicado
+		Torneo t1 = new Torneo("T1",garajes1);
+		Torneo t2 = new Torneo("T2",garajes2);
+		
+		
+		Eliminacion e1 = new Eliminacion("Eliminacion1",t2,7);
+		Eliminacion e2 = new Eliminacion("Eliminacion2",t1);
+		
+		for(Coche coche:e1.getCoches()) {
+			System.out.println(coche);
+		}
+		
+		Estandar es1 = new Estandar("Estandar 1",t2);//Dura tres horas porque no se ha indicado
 		
 		System.out.println("Eliminacion1");
 		for(Coche c : e1.getCoches()) {
@@ -95,13 +138,13 @@ public class Control {
 			System.out.println(e1.getCoches().get(i));	
 		}
 		
-		for(int i=0; i<e1.cochesParaPodio.size();i++) {
-			int posicionPodio=(e1.cochesParaPodio.indexOf(e1.cochesParaPodio.get(i)))+1;
-			System.out.print("\nPOSICIÓN COCHES PARA PODIO: "+posicionPodio);
-			System.out.println(e1.cochesParaPodio.get(i));	
-		}
+//		for(int i=0; i<e1.cochesParaPodio.size();i++) {
+//			int posicionPodio=(e1.cochesParaPodio.indexOf(e1.cochesParaPodio.get(i)))+1;
+//			System.out.print("\nPOSICIÓN COCHES PARA PODIO: "+posicionPodio);
+//			System.out.println(e1.cochesParaPodio.get(i));	
+//		}
 		
-		for (Map.Entry<Coche, Integer> entry : es1.getPodio().entrySet()) {	
+		for (Map.Entry<Coche, Integer> entry : e1.getPodio().entrySet()) {	
 			Coche coche = entry.getKey();
 			int posicion=entry.getValue();
 			System.out.print("\nPOSICIÓN PODIO "+posicion);
@@ -152,5 +195,6 @@ public class Control {
 //		}
 
 	}
+	
 
 }

@@ -8,37 +8,37 @@ import java.util.TreeSet;
 public abstract class Carrera {
 
 	private String nombre;
-	private ArrayList<Coche> coches = new ArrayList<Coche>();//El orden del arrayList determinará en qué psosión está cada coche
-
+	private ArrayList<Coche> coches = new ArrayList<Coche>();// El orden del arrayList determinará en qué psosión está
+																// cada coche
 
 	private ArrayList<Garaje> garajes = new ArrayList<Garaje>();
 	private Garaje garaje;
-	
-	private HashMap<Coche,Integer> podio = new HashMap<Coche,Integer>();
 
-	public Carrera(){
+	private HashMap<Coche, Integer> podio = new HashMap<Coche, Integer>();
+
+	private Torneo torneo;
+
+	public Carrera() {
 
 	}
 
-	// Si participa un sólo garaje, todos sus coches entran en la competición
-	public Carrera(String nombre, Garaje garaje) {
+	public Carrera(String nombre, Torneo torneo) {//No me funciona el constructor!!!
 		this.nombre = nombre;
-		this.garaje = garaje;
-		for (Coche coche : garaje.getCoches()) { // Ver qué pasa con esto
-			this.coches.add(coche);
+		this.torneo = torneo;
+		
+		if (this.torneo.getGarajes().size() > 1) {// Si en un torneo participan varios garajes
+			for (Garaje garaje : this.torneo.getGarajes()) {
+				Coche coche = garaje.getCoches().get(0 + (int) (Math.random() * garaje.getCoches().size()));
+				this.coches.add(coche);
+			}
+			
+		} else if (this.torneo.getGarajes().size() == 1) {// Si en un torneo sólo participa un garaje
+			this.garaje = torneo.getGarajes().get(0);
+			for (Coche coche : garaje.getCoches()) {
+				this.coches.add(coche);
+			}
 		}
-	}
 
-	// Si participa más de un garaje,competirá un coche de cada garaje elegido al
-	// azar
-	public Carrera(String nombre, ArrayList<Garaje> garajes) {
-		this.nombre = nombre;
-		this.garajes = garajes;
-		for (Garaje garaje : garajes) {
-			Coche coche = garaje.getCoches().get(0 + (int) (Math.random() * garaje.getCoches().size()));// Ver qué pasa
-																										// con esto
-			this.coches.add(coche);
-		}
 	}
 
 	public Carrera(String nombre) {
@@ -69,8 +69,13 @@ public abstract class Carrera {
 	public void setPodio(HashMap<Coche, Integer> podio) {
 		this.podio = podio;
 	}
-	
 
-	
+	public Torneo getTorneo() {
+		return torneo;
+	}
+
+	public void setTorneo(Torneo torneo) {
+		this.torneo = torneo;
+	}
 
 }
