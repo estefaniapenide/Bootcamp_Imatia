@@ -1,0 +1,26 @@
+{
+    "coche":{
+        "componentes":{
+            "componente":{
+                "cantidad":"1",
+                "#text":"Volante"
+            },
+            "componente":{
+                "cantidad":"5",
+                "#text":"Rueda"
+            },
+            "componente":{
+                "cantidad":"4",
+                "#text":"Puerta"
+            },
+            "componente":{
+                "cantidad":"4",
+                "#text":"Ventanilla"
+            },
+            "componente":{
+                "cantidad":"1",
+                "#text":"Motor"
+            }
+        }
+    }
+}
